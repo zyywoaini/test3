@@ -1,1 +1,72 @@
 
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .info {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 信息展示区域 -->
+    <div class="info" id="info"></div>
+    <script>
+
+      // 构造符合Java解析要求的参数对象
+    const params = {
+      name: "com.hihonor.adsdk.base.widget.web.jsbridge.JsBridgeWebView",  // 必须与Java端注册的方法名匹配
+      type: "all"        // 或 "asyn"/"all"（根据方法类型选择）
+    };
+    
+    // 调用接口示例（假设接口对象名为JsBridge）
+    const result = window.JsBridge.hasNativeMethod(params);
+alert("result") 
+      let InnerJavascriptInterface = Java.use("com.hihonor.adsdk.base.widget.web.jsbridge.JsBridgeWebView$InnerJavascriptInterface");
+InnerJavascriptInterface["call"].implementation = function (str, str2) {
+    console.log(`InnerJavascriptInterface.call is called: str=${str}, str2=${str2}`);
+    let result = this["call"](str, str2);
+    console.log(`InnerJavascriptInterface.call result=${result}`);
+  alert("result2") 
+   
+    return result;
+};
+      alert("result2",InnerJavascriptInterface) 
+      alert(result) 
+        // 初始化一个空对象，用于存储Android相关的属性和方法
+             console.log(window.AppInterface); 
+       alert("1212") 
+       alert(window.AppInterface) 
+             alert("window")   
+        var jsonObj = {};
+        
+        // 遍历window对象的所有属性
+        for (var key in window) {
+            if (window.hasOwnProperty(key)) {
+                // 检查属性名中是否包含"android"（不区分大小写）
+              
+                    // 获取该属性的所有子属性名
+                    var properties = Object.getOwnPropertyNames(window[key]);
+                    // 获取子属性的详细信息
+                    var details = properties.map(function(prop) {
+                        // 直接返回属性名
+                        return prop;
+                    });
+                    // 将属性名和其详细信息存入jsonObj对象
+                    jsonObj[key] = details;
+               
+            }
+        }
+
+        // 将jsonObj对象转换为字符串并格式化输出，弹出提示框显示
+        alert(JSON.stringify(jsonObj, null, 2));
+    </script>
+</body>
+</html>
