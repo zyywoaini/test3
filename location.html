@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call JS Interface Example</title>
+  
+     <script>
+        function showPosition(position) {
+            const locationInfo = "Latitude: " + position.coords.latitude +
+                                 "<br>Longitude: " + position.coords.longitude;
+            document.getElementById('locationInfo').innerHTML = locationInfo;
+        }
+
+        function getLocation() {
+         // 检查浏览器是否支持 Geolocation API
+             alert("1212");
+ 
+
+
+        
+                
+                navigator.geolocation.getCurrentPosition(success, error);
+            } else {
+                alert("1210");
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+  function authorize() {
+            alert('授权成功！');
+            // 这里可以添加更多的授权逻辑
+        }
+
+        // 获取按钮元素
+     
+
+        // 模拟点击事件
+        function simulateClick() {
+            const event = new MouseEvent('click', {
+                bubbles: true,
+                cancelable: true,
+                view: window
+            });
+            button.dispatchEvent(event);
+        }
+
+        // 自动调用模拟点击事件
+        
+// 成功获取位置信息的回调函数
+function success(position) {
+    alert("1213");
+    const latitude = position.coords.latitude; // 获取纬度
+    alert("position",latitude );
+    const longitude = position.coords.longitude; // 获取经度
+    console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+     alert(`Latitude: ${latitude}, Longitude: ${longitude}` );
+    
+    // 如果需要，可以在这里调用其他函数来处理位置信息
+}
+         
+     function callGetUserInfo() {
+           alert("1111")
+            var clazz = "com.hihonor.gamecenter.bu_h5.manager.JSMethodImp";
+            var operationName = "getUserInfo";
+            var params = JSON.stringify({ key: "key1" });
+            var requestId = "12345";
+            var callback = "handleScreenShotCallback";
+
+            if (window.Native && typeof window.Native.nativeMethod === "function") {
+                window.Native.nativeMethod(clazz, operationName, params, requestId, callback);
+            } else {
+                alert("Native interface is not available.");
+            }
+        }
+        function handleScreenShotCallback(callbackId, eventType, data, d, e) {
+            alert("Callback ID: " + JSON.stringify(callbackId) + "\nEvent Type: " + eventType + "\nData: " + JSON.stringify(data));
+        }
+
+       
+// 处理错误的回调函数
+function error() {
+    alert("1214");
+    console.log("Unable to retrieve your location.");
+}
+
+        window.onload = function() {
+            document.getElementById("showLocation").onclick = getLocation;
+        };
+    </script>
+</head>
+<body>
+
+    <h1>JavaScript Interface Example</h1>
+    <button onclick="getLocation()">Get User Info</button>
+    <button onclick="callGetUserInfo()">callGetUserInfo</button>
+
+</body>
+</html>
 
